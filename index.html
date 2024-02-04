@@ -1,0 +1,40 @@
+<!DOCTYPE html><html>
+<head>
+	<meta charset="utf-8" />
+	<title>Nova Media Verlag - 5000 Cliparts CD Vol. 3</title>
+	<style>
+		body * { margin-left: auto; margin-right: auto; width: auto;  text-decoration: none; margin-top: 2px; margin-bottom: 2 px } body a {height: 24px}
+	</style>
+</head>
+<body onresize="rescale()" style="font-family: sans-serif; font-size: 14pt; text-align: center">
+	<style id="s"></style>
+
+	<h2 id="000">Nova Media Verlag - 5000 Cliparts CD Vol. 3</h2>
+	<div style="width: 700px; max-width: 90%; text-align: left">
+		Online browser for images taken from <a href="https://archive.org/details/5000clipartsvolumeiii">this archived shareware CD</a><br><br>
+		
+		This basic page should automatically adjust the size of images to 1:1 pixels, regardless of the device pixel ratio. You can adjust the scale to view the images at integer-multiple zoom.
+	<p style="transform: scale(200%); transform-origin: top left; margin: 0 12px auto auto">
+		<label for="sc" style="font-size:8pt;">Scale: </label>
+		<input type="number" id="sc" value=1 onchange="rescale()" style="font-family:sans-serif; font-size: 8pt; width:32px;"></input>
+	</p>
+	</div>
+	<script>
+		function rescale() {
+			var scale = parseInt(document.getElementById("sc").value);
+			var h = 750 * scale / devicePixelRatio; //750 = natural height of image
+			var w = 900 * scale / devicePixelRatio; //900 = natural width  of image
+			var styles = "img{width:" + w + "px;height:" + h + "px;image-rendering:pixelated}";
+			document.getElementById("s").innerHTML = styles;
+		}
+		for (let i = 1; i <= 170; i++) { //170 = number of images
+			let num = String( i ).padStart(3, '0'); //3 = length of image name
+			let prev= String(i-1).padStart(3, '0'); //3 = length of image name
+			let next= String(i+1).padStart(3, '0'); //3 = length of image name
+			document.body.innerHTML += "<br><br> <img src=\""+ num +".png\" id=\""+ num +"\"> <br> <a href=\"#"+ prev +"\">◀️</a> "+ num +" <a href=\"#"+ next +"\">▶️</a>";
+		} 
+		rescale();
+	</script>
+
+	</body>
+</html>
